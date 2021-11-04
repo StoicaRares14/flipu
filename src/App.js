@@ -8,6 +8,7 @@ import CartScreen from "./screens/CartScreen";
 import { useDispatch, useSelector } from "react-redux";
 import SigninScreen from "./screens/SigninScreen";
 import { signout } from "./actions/userActions";
+import RegisterScreen from "./screens/RegisterScreen";
 
 function App() {
   const cart = useSelector((state) => state.cart);
@@ -15,9 +16,9 @@ function App() {
   const userSignin = useSelector((state) => state.userSignin);
   const { userInfo } = userSignin;
   const disptach = useDispatch();
-  const signoutHandler = ()=>{
+  const signoutHandler = () => {
     disptach(signout());
-  }
+  };
   return (
     <Router>
       <div className="grid-container">
@@ -37,10 +38,13 @@ function App() {
             {userInfo ? (
               <div className="dropdown">
                 <Link to="#">
-                    {userInfo.name}<i className="fa fa-caret-down"></i>
+                  {userInfo.name}
+                  <i className="fa fa-caret-down"></i>
                 </Link>
                 <ul className="dropdown-content">
-                  <Link to="#signout" onClick={signoutHandler}>Sign Out</Link>
+                  <Link to="#signout" onClick={signoutHandler}>
+                    Sign Out
+                  </Link>
                 </ul>
               </div>
             ) : (
@@ -53,6 +57,7 @@ function App() {
             <Route path="/cart/:id?" component={CartScreen}></Route>
             <Route path="/product/:id" component={ProductScreen}></Route>
             <Route path="/signin" component={SigninScreen}></Route>
+            <Route path="/register" component={RegisterScreen}></Route>
             <Route path="/" component={HomeScreen} exact></Route>
           </Switch>
         </main>
