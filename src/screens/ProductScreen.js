@@ -9,7 +9,7 @@ import MessageBox from "../components/MessageBox";
 function ProductScreen(props) {
   const dispatch = useDispatch();
   const productId = props.match.params.id;
-  const [qty,setQty] = useState(1);
+  const [qty, setQty] = useState(1);
   const productDetails = useSelector((state) => state.productDetails);
   const { loading, error, product } = productDetails;
 
@@ -17,7 +17,7 @@ function ProductScreen(props) {
     dispatch(detailsProduct(productId));
   }, []);
 
-  const addToCartHandler = () =>{
+  const addToCartHandler = () => {
     props.history.push(`/cart/${productId}?qty=${qty}`);
   };
 
@@ -75,26 +75,32 @@ function ProductScreen(props) {
                   </li>
                   {product.countInStock > 0 && (
                     <>
-                    <li>
-                      <div className="row">
-                        <div>
-                            Qty
-                        </div>
-                        <div>
-                          <select value={qty} onChange={(e) => setQty(e.target.value)}>
-                            {[...Array(product.countInStock).keys()].map( 
-                              (x) => (
-                                <option key={x+1} value={x + 1}>
-                                  {x + 1}
-                                </option>
-                              )
-                              )}
-                          </select>
-                        </div>
-                      </div>
-                    </li>
                       <li>
-                        <button onClick={addToCartHandler} className="primary block">Add to Cart</button>
+                        <div className="row">
+                          <div>Qty</div>
+                          <div>
+                            <select
+                              value={qty}
+                              onChange={(e) => setQty(e.target.value)}
+                            >
+                              {[...Array(product.countInStock).keys()].map(
+                                (x) => (
+                                  <option key={x + 1} value={x + 1}>
+                                    {x + 1}
+                                  </option>
+                                )
+                              )}
+                            </select>
+                          </div>
+                        </div>
+                      </li>
+                      <li>
+                        <button
+                          onClick={addToCartHandler}
+                          className="primary block"
+                        >
+                          Add to Cart
+                        </button>
                       </li>
                     </>
                   )}
