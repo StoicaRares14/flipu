@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { signin } from "../actions/userActions";
 import LoadingBox from "../components/LoadingBox";
 import MessageBox from "../components/MessageBox";
+import Button from "@mui/material/Button";
 
 function SigninScreen(props) {
   const [email, setEmail] = useState("");
@@ -57,9 +58,15 @@ function SigninScreen(props) {
         </div>
         <div>
           <label />
-          <button className="primary" type="submit">
+          <Button
+            className="primary"
+            type="submit"
+            size="large"
+            variant="contained"
+            sx={{ fontSize: "1.6rem" }}
+          >
             Sign In
-          </button>
+          </Button>
         </div>
         <div>
           <label />

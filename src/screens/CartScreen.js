@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { addToCart, removeFromCart } from "../actions/cartActions";
 import MessageBox from "../components/MessageBox";
+import Button from "@mui/material/Button";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 function CartScreen(props) {
   const productId = props.match.params.id;
@@ -65,12 +67,16 @@ function CartScreen(props) {
                   </div>
                   <div>${item.price}</div>
                   <div>
-                    <button
+                    <Button
                       type="button"
+                      className="deleteButton"
                       onClick={() => removeFromCartHandler(item.product)}
+                      startIcon={<DeleteIcon />}
+                      variant="contained"
+                      sx={{ fontSize: "1.4rem" }}
                     >
                       Delete
-                    </button>
+                    </Button>
                   </div>
                 </div>
               </li>
@@ -88,14 +94,16 @@ function CartScreen(props) {
               </h2>
             </li>
             <li>
-              <button
+              <Button
                 type="button"
                 onClick={checkoutHandler}
                 className="primary block"
                 disabled={cartItems.length === 0}
+                size="large"
+                sx={{ fontSize: "1.6rem" }}
               >
                 Proceed to Checkout
-              </button>
+              </Button>
             </li>
           </ul>
         </div>

@@ -5,11 +5,14 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import store from "./store";
+import { StyledEngineProvider } from "@mui/material/styles";
 
 ReactDOM.render(
   <Provider store={store}>
     <React.StrictMode>
-      <App />
+      <StyledEngineProvider injectFirst>
+        <App />
+      </StyledEngineProvider>
     </React.StrictMode>
   </Provider>,
   document.getElementById("root")

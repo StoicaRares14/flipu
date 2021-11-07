@@ -6,7 +6,7 @@ import CheckoutSteps from "../components/CheckoutSteps";
 import { ORDER_CREATE_RESET } from "../constants/orderConstants";
 import LoadingBox from "../components/LoadingBox";
 import MessageBox from "../components/MessageBox";
-
+import Button from "@mui/material/Button";
 function PlaceOrderScreen(props) {
   const cart = useSelector((state) => state.cart);
   if (cart.paymendMethod) {
@@ -52,7 +52,7 @@ function PlaceOrderScreen(props) {
               <div className="card card-body">
                 <h2>Payment</h2>
                 <p>
-                  <strong>Method:</strong> {cart.paymendMethod}
+                  <strong>Method:</strong> {cart.paymentMethod}
                 </p>
               </div>
             </li>
@@ -121,14 +121,17 @@ function PlaceOrderScreen(props) {
                 </div>
               </li>
               <li>
-                <button
+                <Button
                   type="button"
                   onClick={placeOrderHandler}
                   className="primary block"
                   disabled={cart.cartItems.length === 0}
+                  size="large"
+                  variant="contained"
+                  sx={{ fontSize: "1.6rem" }}
                 >
                   Place Order
-                </button>
+                </Button>
               </li>
               {loading && <LoadingBox></LoadingBox>}
               {error && <MessageBox variant="danger">{error}</MessageBox>}

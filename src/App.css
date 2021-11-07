@@ -6,9 +6,11 @@ body {
   margin: 0;
   height: 100vh;
   font-size: 1.6rem;
-  font-family: Helvetica, Arial, sans-serif;
+  font-family: Roboto, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #252525;
+  color: white;
 }
 
 #root {
@@ -28,7 +30,8 @@ body {
 }
 header {
   grid-area: header;
-  background-color: #203040;
+  background-color: #9a6149;
+  color: #ffffff;
 }
 main {
   grid-area: main;
@@ -36,7 +39,7 @@ main {
 }
 footer {
   grid-area: footer;
-  background-color: #203040;
+  background-color: #9a6149;
   color: #ffffff;
 }
 /* Common */
@@ -51,6 +54,10 @@ h2 {
 
 a {
   text-decoration: none;
+  color: #ffffff;
+}
+a:visited {
+  color: #ffffff;
 }
 a:hover {
   color: #ff8000;
@@ -63,32 +70,41 @@ ul {
 li {
   margin-top: 1rem;
 }
-input,
+Input,
 select,
 textarea,
-button {
+Button {
   padding: 1rem;
   border-radius: 0.5rem;
   border: 0.1rem #a4a4a4 solid;
   font-size: 1.6rem;
-  font-family: Helvetica, Arial, sans-serif;
+  font-family: Roboto, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-button {
+Button {
   background-color: #f8f8f8;
   cursor: pointer;
 }
-input:hover,
+Button.deleteButton {
+  background-color: #868489;
+}
+/* input:hover,
 select:hover,
-textarea:hover,
-button:hover {
+textarea:hover {
   border: 0.1rem #404040 solid;
+} */
+Button.primary {
+  background-color: #bf9265;
+  color: #ffffff;
 }
-button.primary {
-  background-color: #f0c040;
+Button.primary:hover {
+  background-color: #a86c30;
 }
-button.block {
+Button.deleteButton:hover {
+  background-color: #595c61;
+}
+Button.block {
   width: 100%;
 }
 /* Header */
@@ -148,7 +164,7 @@ img.large {
 /* Card */
 .card {
   border: 0.1rem #c0c0c0 solid;
-  background-color: #f8f8f8;
+  background-color: #595c61;
   border-radius: 0.5rem;
   margin: 1rem;
 }
@@ -168,7 +184,7 @@ img.large {
 }
 
 .rating span:last-child {
-  color: #404040;
+  color: #ffffff;
 }
 
 /*Alert */
@@ -179,7 +195,7 @@ img.large {
   color: #20a020;
 }
 .danger {
-  color: #a02020;
+  color: #6d2121;
 }
 .alert {
   padding: 1rem;
@@ -219,7 +235,7 @@ img.large {
   min-width: 12rem;
   padding: 1rem;
   z-index: 1;
-  background-color: #203040;
+  background-color: #9a6149;
   margin: 0;
   margin-top: 0.4rem;
   border-radius: 0.5rem;

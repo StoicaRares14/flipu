@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { detailsProduct } from "../actions/productActions";
 import LoadingBox from "../components/LoadingBox";
 import MessageBox from "../components/MessageBox";
+import Button from "@mui/material/Button";
 
 function ProductScreen(props) {
   const dispatch = useDispatch();
@@ -95,12 +96,15 @@ function ProductScreen(props) {
                         </div>
                       </li>
                       <li>
-                        <button
+                        <Button
                           onClick={addToCartHandler}
                           className="primary block"
+                          size="large"
+                          variant="contained"
+                          sx={{ fontSize: "1.6rem" }}
                         >
                           Add to Cart
-                        </button>
+                        </Button>
                       </li>
                     </>
                   )}

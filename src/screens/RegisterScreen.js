@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { register } from "../actions/userActions";
 import LoadingBox from "../components/LoadingBox";
 import MessageBox from "../components/MessageBox";
+import Button from "@mui/material/Button";
 
 function RegisterScreen(props) {
   const [name, setName] = useState("");
@@ -83,9 +84,15 @@ function RegisterScreen(props) {
         </div>
         <div>
           <label />
-          <button className="primary" type="submit">
+          <Button
+            className="primary"
+            type="submit"
+            size="large"
+            sx={{ fontSize: "1.6rem" }}
+            variant="contained"
+          >
             Register
-          </button>
+          </Button>
         </div>
         <div>
           <label />

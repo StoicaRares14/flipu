@@ -12,6 +12,7 @@ import RegisterScreen from "./screens/RegisterScreen";
 import ShippingAddressScreen from "./screens/ShippingAddressScreen";
 import PaymentMethodScreen from "./screens/PaymentMethodScreen";
 import PlaceOrderScreen from "./screens/PlaceOrderScreen";
+import MenuBookTwoToneIcon from "@mui/icons-material/MenuBookTwoTone";
 
 function App() {
   const cart = useSelector((state) => state.cart);
@@ -28,7 +29,8 @@ function App() {
         <header className="row">
           <div>
             <Link className="brand" to="/">
-              amazona
+              <MenuBookTwoToneIcon sx={{ fontSize: "3rem" }} />
+              pitZbook
             </Link>
           </div>
           <div>

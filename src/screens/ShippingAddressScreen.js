@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { saveShippingAddress } from "../actions/cartActions";
 import CheckoutSteps from "../components/CheckoutSteps";
-
+import Button from "@mui/material/Button";
+import { Input } from "@mui/material";
 function ShippingAddressScreen(props) {
   const userSignin = useSelector((state) => state.userSignin);
   const { userInfo } = userSignin;
@@ -33,6 +34,7 @@ function ShippingAddressScreen(props) {
         </div>
         <div>
           <label htmlFor="fullName">Full Name</label>
+
           <input
             type="text"
             id="fullName"
@@ -88,9 +90,15 @@ function ShippingAddressScreen(props) {
         </div>
         <div>
           <label />
-          <button className="primary" type="submit">
+          <Button
+            className="primary"
+            type="submit"
+            size="large"
+            sx={{ fontSize: "1.6rem" }}
+            variant="contained"
+          >
             Continue
-          </button>
+          </Button>
         </div>
       </form>
     </div>
