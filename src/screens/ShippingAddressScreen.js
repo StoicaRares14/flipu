@@ -42,6 +42,7 @@ function ShippingAddressScreen(props) {
             value={fullName}
             onChange={(e) => setFullName(e.target.value)}
             required
+            maxLength="30"
           ></input>
         </div>
         <div>
@@ -53,6 +54,7 @@ function ShippingAddressScreen(props) {
             value={address}
             onChange={(e) => setAddress(e.target.value)}
             required
+            maxLength="30"
           ></input>
         </div>
         <div>
@@ -64,6 +66,7 @@ function ShippingAddressScreen(props) {
             value={city}
             onChange={(e) => setCity(e.target.value)}
             required
+            maxLength="30"
           ></input>
         </div>
         <div>
@@ -75,6 +78,7 @@ function ShippingAddressScreen(props) {
             value={postalCode}
             onChange={(e) => setPostalCode(e.target.value)}
             required
+            maxLength="30"
           ></input>
         </div>
         <div>
@@ -86,6 +90,7 @@ function ShippingAddressScreen(props) {
             value={country}
             onChange={(e) => setCountry(e.target.value)}
             required
+            maxLength="30"
           ></input>
         </div>
         <div>

@@ -44,6 +44,7 @@ function SigninScreen(props) {
             placeholder="Enter email"
             required
             onChange={(e) => setEmail(e.target.value)}
+            maxLength="40"
           ></input>
         </div>
         <div>
@@ -54,6 +55,7 @@ function SigninScreen(props) {
             placeholder="Enter password"
             required
             onChange={(e) => setPassword(e.target.value)}
+            maxLength="20"
           ></input>
         </div>
         <div>

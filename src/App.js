@@ -13,6 +13,7 @@ import ShippingAddressScreen from "./screens/ShippingAddressScreen";
 import PaymentMethodScreen from "./screens/PaymentMethodScreen";
 import PlaceOrderScreen from "./screens/PlaceOrderScreen";
 import MenuBookTwoToneIcon from "@mui/icons-material/MenuBookTwoTone";
+import OrderScreen from "./screens/OrderScreen";
 
 function App() {
   const cart = useSelector((state) => state.cart);
@@ -66,6 +67,7 @@ function App() {
             <Route path="/shipping" component={ShippingAddressScreen}></Route>
             <Route path="/payment" component={PaymentMethodScreen}></Route>
             <Route path="/placeorder" component={PlaceOrderScreen}></Route>
+            <Route path="/order/:id" component={OrderScreen}></Route>
             <Route path="/" component={HomeScreen} exact></Route>
           </Switch>
         </main>
