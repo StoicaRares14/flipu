@@ -14,6 +14,12 @@ import PaymentMethodScreen from "./screens/PaymentMethodScreen";
 import PlaceOrderScreen from "./screens/PlaceOrderScreen";
 import MenuBookTwoToneIcon from "@mui/icons-material/MenuBookTwoTone";
 import OrderScreen from "./screens/OrderScreen";
+import OrderHistoryScreen from "./screens/OrderHistoryScreen";
+import ProfileScreen from "./screens/ProfileScreen";
+import PrivateRoute from "./components/PrivateRoute";
+import AdminRoute from "./components/AdminRoute";
+import ProductListScreen from "./screens/ProductListScreen";
+import ProductEditScreen from "./screens/ProductEditScreen";
 
 function App() {
   const cart = useSelector((state) => state.cart);
@@ -48,26 +54,69 @@ function App() {
                   <i className="fa fa-caret-down"></i>
                 </Link>
                 <ul className="dropdown-content">
-                  <Link to="#signout" onClick={signoutHandler}>
-                    Sign Out
-                  </Link>
+                  <li>
+                    <Link to="/profile">User Profile</Link>
+                  </li>
+                  <li>
+                    <Link to="/orderhistory">Order History</Link>
+                  </li>
+                  <li>
+                    <Link to="#signout" onClick={signoutHandler}>
+                      Sign Out
+                    </Link>
+                  </li>
                 </ul>
               </div>
             ) : (
               <Link to="/signin">Sign In</Link>
+            )}
+            {userInfo && userInfo.isAdmin && (
+              <div className="dropdown">
+                <Link to="#admin">
+                  Admin <i className="fa fa-caret-down"></i>
+                </Link>
+                <ul className="dropdown-content">
+                  <li>
+                    <Link to="/dashboard">Dashboard</Link>
+                  </li>
+                  <li>
+                    <Link to="/productlist">Products</Link>
+                  </li>
+                  <li>
+                    <Link to="/orderlist">Orders</Link>
+                  </li>
+                  <li>
+                    <Link to="/userlist">Users</Link>
+                  </li>
+                </ul>
+              </div>
             )}
           </div>
         </header>
         <main>
           <Switch>
             <Route path="/cart/:id?" component={CartScreen}></Route>
-            <Route path="/product/:id" component={ProductScreen}></Route>
+            <Route path="/product/:id" component={ProductScreen} exact></Route>
+            <Route
+              path="/product/:id/edit"
+              component={ProductEditScreen}
+              exact
+            ></Route>
             <Route path="/signin" component={SigninScreen}></Route>
             <Route path="/register" component={RegisterScreen}></Route>
             <Route path="/shipping" component={ShippingAddressScreen}></Route>
             <Route path="/payment" component={PaymentMethodScreen}></Route>
             <Route path="/placeorder" component={PlaceOrderScreen}></Route>
             <Route path="/order/:id" component={OrderScreen}></Route>
+            <Route path="/orderhistory" component={OrderHistoryScreen}></Route>
+            <PrivateRoute
+              path="/profile"
+              component={ProfileScreen}
+            ></PrivateRoute>
+            <AdminRoute
+              path="/productlist"
+              component={ProductListScreen}
+            ></AdminRoute>
             <Route path="/" component={HomeScreen} exact></Route>
           </Switch>
         </main>

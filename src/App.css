@@ -73,7 +73,7 @@ li {
 Input,
 select,
 textarea,
-Button {
+button {
   padding: 1rem;
   border-radius: 0.5rem;
   border: 0.1rem #a4a4a4 solid;
@@ -82,11 +82,11 @@ Button {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-Button {
+button {
   background-color: #f8f8f8;
   cursor: pointer;
 }
-Button.deleteButton {
+button.deleteButton {
   background-color: #868489;
 }
 /* input:hover,
@@ -94,18 +94,25 @@ select:hover,
 textarea:hover {
   border: 0.1rem #404040 solid;
 } */
-Button.primary {
+button.primary {
   background-color: #bf9265;
   color: #ffffff;
 }
-Button.primary:hover {
+button.primary:hover {
   background-color: #a86c30;
 }
-Button.deleteButton:hover {
+button.deleteButton:hover {
   background-color: #595c61;
 }
-Button.block {
+button.block {
   width: 100%;
+}
+button.small {
+  font-size: 1.2rem;
+  background-color: #bf9265;
+}
+button.small:hover {
+  background-color: #a86c30;
 }
 /* Header */
 header a {
@@ -259,4 +266,24 @@ img.large {
 .checkout-steps > div.active {
   border-top-color: #ff8000;
   color: #ff8000;
+}
+/* table */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.table tbody tr:nth-of-type(odd) {
+  background-color: #5a5a5a;
+  color: rgb(255, 255, 255);
+}
+
+.table td,
+table th {
+  text-align: left;
+  border: 0.1rem solid #e4e4e4;
+  padding: 0.5rem;
+  text-align: center;
+}
+.table button {
+  margin: 0 0.2rem;
 }
