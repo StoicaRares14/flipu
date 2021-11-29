@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { detailsProduct } from "../actions/productActions";
+import { detailsProduct, updateProduct } from "../actions/productActions";
 import LoadingBox from "../components/LoadingBox";
 import MessageBox from "../components/MessageBox";
 import { Button } from "@mui/material";
+import { PRODUCT_UPDATE_RESET } from "../constants/productConstants";
 
 function ProductEditScreen(props) {
   const productId = props.match.params.id;
@@ -18,9 +19,20 @@ function ProductEditScreen(props) {
 
   const productDetails = useSelector((state) => state.productDetails);
   const { loading, error, product } = productDetails;
+
+  const productUpdate = useSelector((state) => state.productUpdate);
+  const {
+    loading: loadingUpdate,
+    error: errorUpdate,
+    success: successUpdate,
+  } = productUpdate;
   const dispatch = useDispatch();
   useEffect(() => {
-    if (!product || product._id !== productId) {
+    if (successUpdate) {
+      props.history.push("/productlist");
+    }
+    if (!product || product._id !== productId || successUpdate) {
+      dispatch({ type: PRODUCT_UPDATE_RESET });
       dispatch(detailsProduct(productId));
     } else {
       setName(product.name);
@@ -29,12 +41,23 @@ function ProductEditScreen(props) {
       setImage(product.image);
       setPrice(product.price);
       setCountInStock(product.countInStock);
-      setRating(product.rating);
       setDescription(product.description);
     }
-  }, [product, dispatch, productId]);
+  }, [product, dispatch, productId, successUpdate, props.history]);
   const submitHandler = (e) => {
     e.preventDefault();
+    dispatch(
+      updateProduct({
+        _id: productId,
+        name,
+        author,
+        category,
+        image,
+        price,
+        countInStock,
+        description,
+      })
+    );
   };
   return (
     <div>
@@ -42,6 +65,8 @@ function ProductEditScreen(props) {
         <div>
           <h1>Edit Product {productId}</h1>
         </div>
+        {loadingUpdate && <LoadingBox></LoadingBox>}
+        {errorUpdate && <MessageBox variant="danger">{errorUpdate}</MessageBox>}
         {loading ? (
           <LoadingBox></LoadingBox>
         ) : error ? (
@@ -115,17 +140,6 @@ function ProductEditScreen(props) {
               />
             </div>
             <div>
-              <label htmlFor="rating">Rating</label>
-              <input
-                id="rating"
-                type="text"
-                placeholder="Enter rating"
-                value={rating}
-                maxLength="20"
-                onChange={(e) => setRating(e.target.value)}
-              />
-            </div>
-            <div>
               <label htmlFor="description">Description</label>
               <input
                 id="description"
@@ -143,8 +157,7 @@ function ProductEditScreen(props) {
                 type="submit"
                 size="large"
                 sx={{ fontSize: "1.6rem" }}
-                variant="contained"
-              >
+                variant="contained">
                 Update
               </Button>
             </div>
