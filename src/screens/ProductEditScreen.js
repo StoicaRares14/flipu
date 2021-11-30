@@ -5,6 +5,7 @@ import LoadingBox from "../components/LoadingBox";
 import MessageBox from "../components/MessageBox";
 import { Button } from "@mui/material";
 import { PRODUCT_UPDATE_RESET } from "../constants/productConstants";
+import axios from "axios";
 
 function ProductEditScreen(props) {
   const productId = props.match.params.id;
@@ -58,6 +59,30 @@ function ProductEditScreen(props) {
         description,
       })
     );
+  };
+  const [loadingUpload, setLoadingUpload] = useState(false);
+  const [errorUpload, setErrorUpload] = useState("");
+
+  const userSignin = useSelector((state) => state.userSignin);
+  const { userInfo } = userSignin;
+  const uploadFileHandler = async (e) => {
+    const file = e.target.files[0];
+    const bodyFormData = new FormData();
+    bodyFormData.append("image", file);
+    setLoadingUpload(true);
+    try {
+      const { data } = await axios.post("/api/uploads", bodyFormData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization: `Bearer ${userInfo.token}`,
+        },
+      });
+      setImage(data);
+      setLoadingUpload(false);
+    } catch (error) {
+      setErrorUpload(error.message);
+      setLoadingUpload(false);
+    }
   };
   return (
     <div>
@@ -116,6 +141,19 @@ function ProductEditScreen(props) {
                 maxLength="20"
                 onChange={(e) => setImage(e.target.value)}
               />
+            </div>
+            <div>
+              <label htmlFor="imageFile">Image file</label>
+              <input
+                type="file"
+                id="imageFile"
+                label="Choose Image"
+                onChange={uploadFileHandler}
+              />
+              {loadingUpload && <LoadingBox></LoadingBox>}
+              {errorUpload && (
+                <MessageBox variant="danger">{errorUpload}</MessageBox>
+              )}
             </div>
             <div>
               <label htmlFor="price">Price</label>
