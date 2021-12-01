@@ -195,7 +195,8 @@ function ProductEditScreen(props) {
                 type="submit"
                 size="large"
                 sx={{ fontSize: "1.6rem" }}
-                variant="contained">
+                variant="contained"
+              >
                 Update
               </Button>
             </div>
