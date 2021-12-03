@@ -10,7 +10,6 @@ import SigninScreen from "./screens/SigninScreen";
 import { signout } from "./actions/userActions";
 import RegisterScreen from "./screens/RegisterScreen";
 import ShippingAddressScreen from "./screens/ShippingAddressScreen";
-import PaymentMethodScreen from "./screens/PaymentMethodScreen";
 import PlaceOrderScreen from "./screens/PlaceOrderScreen";
 import MenuBookTwoToneIcon from "@mui/icons-material/MenuBookTwoTone";
 import OrderScreen from "./screens/OrderScreen";
@@ -21,6 +20,7 @@ import AdminRoute from "./components/AdminRoute";
 import ProductListScreen from "./screens/ProductListScreen";
 import ProductEditScreen from "./screens/ProductEditScreen";
 import OrderListScreen from "./screens/OrderListScreen";
+import UserListScreen from "./screens/UserListScreen";
 
 function App() {
   const cart = useSelector((state) => state.cart);
@@ -78,9 +78,6 @@ function App() {
                 </Link>
                 <ul className="dropdown-content">
                   <li>
-                    <Link to="/dashboard">Dashboard</Link>
-                  </li>
-                  <li>
                     <Link to="/productlist">Products</Link>
                   </li>
                   <li>
@@ -106,7 +103,6 @@ function App() {
             <Route path="/signin" component={SigninScreen}></Route>
             <Route path="/register" component={RegisterScreen}></Route>
             <Route path="/shipping" component={ShippingAddressScreen}></Route>
-            <Route path="/payment" component={PaymentMethodScreen}></Route>
             <Route path="/placeorder" component={PlaceOrderScreen}></Route>
             <Route path="/order/:id" component={OrderScreen}></Route>
             <Route path="/orderhistory" component={OrderHistoryScreen}></Route>
@@ -121,6 +117,10 @@ function App() {
             <AdminRoute
               path="/orderlist"
               component={OrderListScreen}
+            ></AdminRoute>
+            <AdminRoute
+              path="/userlist"
+              component={UserListScreen}
             ></AdminRoute>
             <Route path="/" component={HomeScreen} exact></Route>
           </Switch>

@@ -15,7 +15,6 @@ function ProductEditScreen(props) {
   const [image, setImage] = useState("");
   const [price, setPrice] = useState("");
   const [countInStock, setCountInStock] = useState("");
-  const [rating, setRating] = useState("");
   const [description, setDescription] = useState("");
 
   const productDetails = useSelector((state) => state.productDetails);
