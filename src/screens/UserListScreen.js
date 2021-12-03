@@ -4,8 +4,9 @@ import { deleteUser, listUsers } from "../actions/userActions";
 import LoadingBox from "../components/LoadingBox";
 import { Button } from "@mui/material";
 import MessageBox from "../components/MessageBox";
+import { USER_DETAILS_RESET } from "../constants/userConstants";
 
-function UserListScreen() {
+function UserListScreen(props) {
   const userList = useSelector((state) => state.userList);
   const { loading, error, users } = userList;
 
@@ -19,6 +20,11 @@ function UserListScreen() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(listUsers());
+    if (successDelete) {
+      dispatch({
+        type: USER_DETAILS_RESET,
+      });
+    }
   }, [dispatch, successDelete]);
   const deleteHandler = (user) => {
     if (window.confirm("Are you sure?")) {
@@ -30,9 +36,7 @@ function UserListScreen() {
       <h1>Users</h1>
       {loadingDelete && <LoadingBox></LoadingBox>}
       {errorDelete && <MessageBox variant="danger">{errorDelete}</MessageBox>}
-      {successDelete && (
-        <MessageBox variant="success">User Deleted Successfully</MessageBox>
-      )}
+
       {loading ? (
         <LoadingBox></LoadingBox>
       ) : error ? (
@@ -61,6 +65,7 @@ function UserListScreen() {
                     size="large"
                     variant="contained"
                     type="button"
+                    onClick={() => props.history.push(`/user/${user._id}/edit`)}
                   >
                     Edit
                   </Button>
